@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <pd:name>initDbData/CallDBDestinatii.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startX>26</pd:startX>
+    <pd:startY>214</pd:startY>
+    <pd:returnBindings/>
+    <pd:endName>End</pd:endName>
+    <pd:endX>846</pd:endX>
+    <pd:endY>174</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1495199167379</pd:targetNamespace>
+    <pd:activity name="CallDataZona1">
+        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
+        <pd:x>306</pd:x>
+        <pd:y>74</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <commit>false</commit>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Resouces/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <statement>select LOCALITATI.NUME as numeLocalitate, SISTEME.NUME as numeSistem from LOCALITATI, ZONE, SISTEME
+where LOCALITATI.ID_ZONA = ZONE.ID and
+LOCALITATI.ID_SISTEM = SISTEME.ID and
+ZONE.NUME = 'ZONA1'</statement>
+            <Prepared_Param_DataType/>
+            <oraObjects/>
+            <oraTables/>
+            <QueryOutputCachedSchemaColumns>NUMELOCALITATE</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>varchar2</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>NUMESISTEM</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>varchar2</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+        </config>
+        <pd:inputBindings>
+            <jdbcQueryActivityInput/>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="CallDataZona2">
+        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
+        <pd:x>306</pd:x>
+        <pd:y>174</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <commit>false</commit>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Resouces/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <statement>select LOCALITATI.NUME as numeLocalitate, SISTEME.NUME as numeSistem from LOCALITATI, ZONE, SISTEME
+where LOCALITATI.ID_ZONA = ZONE.ID and
+LOCALITATI.ID_SISTEM = SISTEME.ID and
+ZONE.NUME = 'ZONA2'</statement>
+            <Prepared_Param_DataType/>
+            <oraObjects/>
+            <oraTables/>
+            <QueryOutputCachedSchemaColumns>NUMELOCALITATE</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>varchar2</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>NUMESISTEM</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>varchar2</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+        </config>
+        <pd:inputBindings>
+            <jdbcQueryActivityInput/>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="CallDataZona3">
+        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
+        <pd:x>306</pd:x>
+        <pd:y>254</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <commit>false</commit>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Resouces/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <statement>select LOCALITATI.NUME as numeLocalitate, SISTEME.NUME as numeSistem from LOCALITATI, ZONE, SISTEME
+where LOCALITATI.ID_ZONA = ZONE.ID and
+LOCALITATI.ID_SISTEM = SISTEME.ID and
+ZONE.NUME = 'ZONA3'</statement>
+            <Prepared_Param_DataType/>
+            <oraObjects/>
+            <oraTables/>
+            <QueryOutputCachedSchemaColumns>NUMELOCALITATE</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>varchar2</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>NUMESISTEM</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>varchar2</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+        </config>
+        <pd:inputBindings>
+            <jdbcQueryActivityInput/>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="CallDataZona4">
+        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
+        <pd:x>306</pd:x>
+        <pd:y>350</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <commit>false</commit>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Resouces/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <statement>select LOCALITATI.NUME as numeLocalitate, SISTEME.NUME as numeSistem from LOCALITATI, ZONE, SISTEME
+where LOCALITATI.ID_ZONA = ZONE.ID and
+LOCALITATI.ID_SISTEM = SISTEME.ID and
+ZONE.NUME = 'ZONA4'</statement>
+            <Prepared_Param_DataType/>
+            <oraObjects/>
+            <oraTables/>
+            <QueryOutputCachedSchemaColumns>NUMELOCALITATE</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>varchar2</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>NUMESISTEM</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>varchar2</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+        </config>
+        <pd:inputBindings>
+            <jdbcQueryActivityInput/>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="SetSVZoana1">
+        <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
+        <pd:x>474</pd:x>
+        <pd:y>80</pd:y>
+        <config>
+            <variableConfig>/Resouces/SharedVariable/SVZona1.sharedvariable</variableConfig>
+            <showResult>false</showResult>
+        </config>
+        <pd:inputBindings>
+            <root2>
+                <xsl:for-each select="$CallDataZona1/resultSet/Record">
+                    <Destinatie>
+                        <Nume>
+                            <xsl:value-of select="NUMELOCALITATE"/>
+                        </Nume>
+                        <Sistem>
+                            <xsl:value-of select="NUMESISTEM"/>
+                        </Sistem>
+                    </Destinatie>
+                </xsl:for-each>
+            </root2>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="SetSVZoana2">
+        <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
+        <pd:x>474</pd:x>
+        <pd:y>174</pd:y>
+        <config>
+            <variableConfig>/Resouces/SharedVariable/SVZona2.sharedvariable</variableConfig>
+            <showResult>false</showResult>
+        </config>
+        <pd:inputBindings>
+            <root2>
+                <xsl:for-each select="$CallDataZona2/resultSet/Record">
+                    <Destinatie>
+                        <Nume>
+                            <xsl:value-of select="NUMELOCALITATE"/>
+                        </Nume>
+                        <Sistem>
+                            <xsl:value-of select="NUMESISTEM"/>
+                        </Sistem>
+                    </Destinatie>
+                </xsl:for-each>
+            </root2>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="SetSVZoana3">
+        <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
+        <pd:x>474</pd:x>
+        <pd:y>254</pd:y>
+        <config>
+            <variableConfig>/Resouces/SharedVariable/SVZona3.sharedvariable</variableConfig>
+            <showResult>false</showResult>
+        </config>
+        <pd:inputBindings>
+            <root2>
+                <xsl:for-each select="$CallDataZona3/resultSet/Record">
+                    <Destinatie>
+                        <Nume>
+                            <xsl:value-of select="NUMELOCALITATE"/>
+                        </Nume>
+                        <Sistem>
+                            <xsl:value-of select="NUMESISTEM"/>
+                        </Sistem>
+                    </Destinatie>
+                </xsl:for-each>
+            </root2>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="SetSVZoana4">
+        <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
+        <pd:x>474</pd:x>
+        <pd:y>350</pd:y>
+        <config>
+            <variableConfig>/Resouces/SharedVariable/SVZona4.sharedvariable</variableConfig>
+            <showResult>false</showResult>
+        </config>
+        <pd:inputBindings>
+            <root2>
+                <xsl:for-each select="$CallDataZona4/resultSet/Record">
+                    <Destinatie>
+                        <Nume>
+                            <xsl:value-of select="NUMELOCALITATE"/>
+                        </Nume>
+                        <Sistem>
+                            <xsl:value-of select="NUMESISTEM"/>
+                        </Sistem>
+                    </Destinatie>
+                </xsl:for-each>
+            </root2>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>CallDataZona1</pd:from>
+        <pd:to>SetSVZoana1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>CallDataZona4</pd:from>
+        <pd:to>SetSVZoana4</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>CallDataZona3</pd:from>
+        <pd:to>SetSVZoana3</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>CallDataZona2</pd:from>
+        <pd:to>SetSVZoana2</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>CallDataZona2</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>CallDataZona3</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>CallDataZona4</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>CallDataZona1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SetSVZoana3</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SetSVZoana4</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SetSVZoana2</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SetSVZoana1</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

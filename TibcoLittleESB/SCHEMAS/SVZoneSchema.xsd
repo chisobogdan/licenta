@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="root2">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Destinatie" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Destinatie">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Nume"/>
+				<xs:element ref="Sistem"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Nume" type="xs:string"/>
+	<xs:element name="Sistem" type="xs:string"/>
+</xs:schema>

@@ -1,0 +1,6 @@
+create user meteo "User for Meteo sistem" password=meteo
+create queue meteo.notifySituationSystem
+grant queue meteo.notifySituationSystem user=meteo receive,send,browse
+
+
+create user ISU "User for ISU sistem" password=ISU
