@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pfx="http://www.tibco.com/ns/no_namespace_schema_location/SCHEMAS/NotificareMesaj.xsd">
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pfx2="http://www.tibco.com/pe/WriteToLogActivitySchema" xmlns:pfx="http://www.tibco.com/ns/no_namespace_schema_location/SCHEMAS/NotificareMesaj.xsd">
     <xsd:import namespace="http://www.tibco.com/ns/no_namespace_schema_location/SCHEMAS/NotificareMesaj.xsd" schemaLocation="/SCHEMAS/NotificareMesaj.xsd"/>
     <pd:name>NotyfySituationSystem/_notificaSistemele.process</pd:name>
     <pd:startName>receive notifySituationSystem</pd:startName>
@@ -47,6 +47,36 @@
             <xsl:copy-of select="$receive-notifySituationSystem/ns:ActivityOutput/Body/root"/>
         </pd:inputBindings>
     </pd:activity>
+    <pd:activity name="Log">
+        <pd:type>com.tibco.pe.core.WriteToLogActivity</pd:type>
+        <pd:resourceType>ae.activities.log</pd:resourceType>
+        <pd:x>256</pd:x>
+        <pd:y>174</pd:y>
+        <config>
+            <role>User</role>
+        </config>
+        <pd:inputBindings>
+            <pfx2:ActivityInput>
+                <message>
+                    <xsl:value-of select="'error'"/>
+                </message>
+                <msgCode>
+                    <xsl:value-of select="$Catch/exceptiondata/*"/>
+                </msgCode>
+            </pfx2:ActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Catch">
+        <pd:type>com.tibco.pe.core.CatchActivity</pd:type>
+        <pd:resourceType>ae.activities.catch</pd:resourceType>
+        <pd:x>126</pd:x>
+        <pd:y>174</pd:y>
+        <pd:handler>true</pd:handler>
+        <config>
+            <catchAll>true</catchAll>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
     <pd:transition>
         <pd:from>receive notifySituationSystem</pd:from>
         <pd:to>Main</pd:to>
@@ -57,6 +87,20 @@
     <pd:transition>
         <pd:from>Main</pd:from>
         <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Log</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Catch</pd:from>
+        <pd:to>Log</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
