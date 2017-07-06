@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pfx="http://www.tibco.com/ns/no_namespace_schema_location/SCHEMAS/NotificareMesaj.xsd">
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pfx="http://www.tibco.com/ns/no_namespace_schema_location/SCHEMAS/NotificareMesaj.xsd">
     <xsd:import namespace="http://www.tibco.com/ns/no_namespace_schema_location/SCHEMAS/NotificareMesaj.xsd" schemaLocation="/SCHEMAS/NotificareMesaj.xsd"/>
     <pd:name>NotyfySituationSystem/Zona4.process</pd:name>
     <pd:startName>Start</pd:startName>
@@ -330,7 +330,7 @@
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>xpath</pd:conditionType>
-        <pd:xpath>$Start/root/Cod = 'ROSU' or $Start/root/Cod = 'GALBEN'</pd:xpath>
+        <pd:xpath>$Start/root/Cod = 'ROSU' or $Start/root/Cod = 'PORTOCALIU'</pd:xpath>
     </pd:transition>
     <pd:transition>
         <pd:from>ISU</pd:from>
