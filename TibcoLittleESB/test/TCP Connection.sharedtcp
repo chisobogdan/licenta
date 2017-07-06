@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<BWSharedResource>
-    <name>TCP Connection</name>
-    <resourceType>ae.shared.TCPSharedconnection</resourceType>
-    <config>
-        <enableDNSLookup>true</enableDNSLookup>
-    </config>
-</BWSharedResource>

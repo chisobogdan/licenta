@@ -10,6 +10,6 @@
         <UseSharedJndiConfig>false</UseSharedJndiConfig>
         <location>jdbc:tibcosoftwareinc:oracle://127.0.0.1:1521;SID=XE</location>
         <user>chiso</user>
-        <password>#!POJAO4ynzox9hPCu56HzRg==</password>
+        <password>#!ZVJzRGgTNlTWW6bXKEJUKPauv9POCK8s</password>
     </config>
 </BWSharedResource>
