@@ -44,17 +44,6 @@ public class MessageViewPanel {
 	JTextArea textZona3 = new JTextArea();
 	JTextArea textZona4 = new JTextArea();
 	ArrayList<JLabel> nrMesaje = new ArrayList<JLabel>();
-	
-	//
-	int contor=0;
-
-	public int getContor() {
-		return contor;
-	}
-
-	public void setContor(int contor) {
-		this.contor = contor;
-	}
 
 	// Create a form with the fields
 	public MessageViewPanel() {
@@ -148,7 +137,6 @@ public class MessageViewPanel {
 	public void setMessage(String message) {
 		this.message = message;
 		// atualizari text areea
-		
 		System.out.println("zona trimisa in view" + this.zona);
 		switch (this.zona) {
 		case 1:

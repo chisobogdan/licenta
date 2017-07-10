@@ -1,4 +1,6 @@
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +11,20 @@ import javax.jms.QueueConnectionFactory;
 import javax.jms.QueueReceiver;
 import javax.jms.QueueSession;
 import javax.jms.TextMessage;
+import javax.swing.text.Document;
+import javax.xml.bind.Element;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 import com.tibco.tibjms.TibjmsQueueConnectionFactory;
+
 /**
  * Clasa observata pentru primirea mesajelor
  * 
- * @author chiso
+ * @author viata mea
  *
  */
 public class TibcoEMSQueueReceiver implements Runnable {
@@ -58,7 +69,6 @@ public class TibcoEMSQueueReceiver implements Runnable {
 
 			/* read queue messages */
 			while (true) {
-				
 				TextMessage message = (TextMessage) receiver.receive();
 				if (message == null)
 					break;

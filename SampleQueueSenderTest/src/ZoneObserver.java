@@ -1,4 +1,13 @@
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
+import javax.swing.text.Document;
+import javax.xml.bind.Element;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 /**
  * Clasa care Observa primirea mesajelor si le preia
@@ -21,7 +30,6 @@ public class ZoneObserver extends Observer {
 		
 		msgView.setZona(subject.getZona());
 		msgView.setMessage(mesaj);
-		msgView.setContor(msgView.getContor()+1);
 		
 		//System.out.println(subject.getQueueName() + " " + subject.getMessage() + " " + subject.getZona());
 	}
