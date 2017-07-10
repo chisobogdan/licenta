@@ -15,7 +15,7 @@ import com.tibco.tibjms.TibjmsQueueConnectionFactory;
  *
  */
 public class TibcoEMSQueueSender {
- 
+
 	public static void sendMessage(String message) {
  
 		String serverUrl = "tcp://localhost:7222";
@@ -29,7 +29,7 @@ public class TibcoEMSQueueSender {
 			Vector<Object> data = new Vector<Object>();
 			data.add("<root><Cod>ROSU</Cod><Destinatie>ZONA1</Destinatie><Mesaj>STARE DE ALERTA: GRINDINA</Mesaj></root> ");
  
-			System.out.println("Sending JMS message to server " + serverUrl + "...");
+			//System.out.println("Sending JMS message to server " + serverUrl + "...");
  
 			QueueConnectionFactory factory = new TibjmsQueueConnectionFactory(serverUrl);
 			QueueConnection connection = factory.createQueueConnection(userName, password);
@@ -45,7 +45,7 @@ public class TibcoEMSQueueSender {
 				// String text = (String) data.elementAt(i);
 				jmsMessage.setText(message);
 				sender.send(jmsMessage);
-				System.out.println("Sent message: " + message);
+				//System.out.println("Sent message: " + message);
 			}
  
 			connection.close();
