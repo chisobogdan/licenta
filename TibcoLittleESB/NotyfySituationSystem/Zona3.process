@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns1="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pfx="http://www.tibco.com/ns/no_namespace_schema_location/SCHEMAS/NotificareMesaj.xsd">
+    <xsd:import namespace="http://www.tibco.com/ns/no_namespace_schema_location/SCHEMAS/NotificareMesaj.xsd" schemaLocation="/SCHEMAS/NotificareMesaj.xsd"/>
+    <pd:name>NotyfySituationSystem/Zona3.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx:root"/>
+    <pd:startX>26</pd:startX>
+    <pd:startY>264</pd:startY>
+    <pd:returnBindings/>
+    <pd:endName>End</pd:endName>
+    <pd:endX>936</pd:endX>
+    <pd:endY>254</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1493306856951</pd:targetNamespace>
+    <pd:group name="ISU">
+        <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
+        <pd:resourceType>ae.process.group</pd:resourceType>
+        <pd:x>583</pd:x>
+        <pd:y>1</pd:y>
+        <pd:width>183</pd:width>
+        <pd:height>140</pd:height>
+        <pd:collapsedWidth>57</pd:collapsedWidth>
+        <pd:collapsedHeight>70</pd:collapsedHeight>
+        <pd:groupVariables/>
+        <pd:joinToggle>inherit</pd:joinToggle>
+        <config>
+            <pd:groupType>inputLoop</pd:groupType>
+            <pd:serializable>false</pd:serializable>
+            <pd:over>$Create-Dinamic-queus-for-ISU/Desinatii/QueueName</pd:over>
+            <pd:indexSlot>i</pd:indexSlot>
+            <pd:activityOutputName/>
+            <pd:accumulateOutput>false</pd:accumulateOutput>
+        </config>
+        <pd:inputBindings/>
+        <pd:expanded>true</pd:expanded>
+        <pd:transition>
+            <pd:from>start</pd:from>
+            <pd:to>Send message to ISU</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Send message to ISU</pd:from>
+            <pd:to>end</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:activity name="Send message to ISU">
+            <pd:type>com.tibco.plugin.jms.JMSQueueSendActivity</pd:type>
+            <pd:resourceType>ae.activities.JMSQueueSendActivity</pd:resourceType>
+            <pd:x>664</pd:x>
+            <pd:y>72</pd:y>
+            <config>
+                <PermittedMessageType>XML Text</PermittedMessageType>
+                <SessionAttributes>
+                    <transacted>false</transacted>
+                    <acknowledgeMode>1</acknowledgeMode>
+                    <maxSessions>1</maxSessions>
+                </SessionAttributes>
+                <ConfigurableHeaders>
+                    <JMSDeliveryMode>PERSISTENT</JMSDeliveryMode>
+                    <JMSExpiration>0</JMSExpiration>
+                    <JMSPriority>4</JMSPriority>
+                </ConfigurableHeaders>
+                <ConnectionReference>/Resouces/JMS-Connection-ISU.sharedjmscon</ConnectionReference>
+                <InDataxsdString ref="pfx:root"/>
+            </config>
+            <pd:inputBindings>
+                <ns1:ActivityInput>
+                    <destinationQueue>
+                        <xsl:value-of select="$Create-Dinamic-queus-for-ISU/Desinatii/QueueName[$i]"/>
+                    </destinationQueue>
+                    <Body>
+                        <xsl:copy-of select="$Start/root"/>
+                    </Body>
+                </ns1:ActivityInput>
+            </pd:inputBindings>
+        </pd:activity>
+    </pd:group>
+    <pd:group name="Jandarmerie">
+        <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
+        <pd:resourceType>ae.process.group</pd:resourceType>
+        <pd:x>573</pd:x>
+        <pd:y>171</pd:y>
+        <pd:width>195</pd:width>
+        <pd:height>140</pd:height>
+        <pd:collapsedWidth>57</pd:collapsedWidth>
+        <pd:collapsedHeight>70</pd:collapsedHeight>
+        <pd:groupVariables/>
+        <pd:joinToggle>inherit</pd:joinToggle>
+        <config>
+            <pd:groupType>inputLoop</pd:groupType>
+            <pd:serializable>false</pd:serializable>
+            <pd:over>$Create-Dinamic-queus-for-ISU-Jandarmerie/Desinatii/QueueName</pd:over>
+            <pd:indexSlot>j</pd:indexSlot>
+            <pd:activityOutputName/>
+            <pd:accumulateOutput>false</pd:accumulateOutput>
+        </config>
+        <pd:inputBindings/>
+        <pd:expanded>true</pd:expanded>
+        <pd:transition>
+            <pd:from>start</pd:from>
+            <pd:to>Send message to Jandarmerie</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Send message to Jandarmerie</pd:from>
+            <pd:to>end</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:activity name="Send message to Jandarmerie">
+            <pd:type>com.tibco.plugin.jms.JMSQueueSendActivity</pd:type>
+            <pd:resourceType>ae.activities.JMSQueueSendActivity</pd:resourceType>
+            <pd:x>667</pd:x>
+            <pd:y>247</pd:y>
+            <config>
+                <PermittedMessageType>XML Text</PermittedMessageType>
+                <SessionAttributes>
+                    <transacted>false</transacted>
+                    <acknowledgeMode>1</acknowledgeMode>
+                    <maxSessions>1</maxSessions>
+                </SessionAttributes>
+                <ConfigurableHeaders>
+                    <JMSDeliveryMode>PERSISTENT</JMSDeliveryMode>
+                    <JMSExpiration>0</JMSExpiration>
+                    <JMSPriority>4</JMSPriority>
+                </ConfigurableHeaders>
+                <ConnectionReference>/Resouces/JMS-Connection-Jandarmerie.sharedjmscon</ConnectionReference>
+                <InDataxsdString ref="pfx:root"/>
+            </config>
+            <pd:inputBindings>
+                <ns1:ActivityInput>
+                    <destinationQueue>
+                        <xsl:value-of select="$Create-Dinamic-queus-for-ISU-Jandarmerie/Desinatii/QueueName[$j]"/>
+                    </destinationQueue>
+                    <Body>
+                        <xsl:copy-of select="$Start/root"/>
+                    </Body>
+                </ns1:ActivityInput>
+            </pd:inputBindings>
+        </pd:activity>
+    </pd:group>
+    <pd:group name="Primarie">
+        <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
+        <pd:resourceType>ae.process.group</pd:resourceType>
+        <pd:x>574</pd:x>
+        <pd:y>358</pd:y>
+        <pd:width>196</pd:width>
+        <pd:height>160</pd:height>
+        <pd:collapsedWidth>57</pd:collapsedWidth>
+        <pd:collapsedHeight>70</pd:collapsedHeight>
+        <pd:groupVariables/>
+        <pd:joinToggle>inherit</pd:joinToggle>
+        <config>
+            <pd:groupType>inputLoop</pd:groupType>
+            <pd:serializable>false</pd:serializable>
+            <pd:over>$Create-Dinamic-queus-for-ISU-Primarie/Desinatii/QueueName</pd:over>
+            <pd:indexSlot>k</pd:indexSlot>
+            <pd:activityOutputName/>
+            <pd:accumulateOutput>false</pd:accumulateOutput>
+        </config>
+        <pd:inputBindings/>
+        <pd:expanded>true</pd:expanded>
+        <pd:transition>
+            <pd:from>start</pd:from>
+            <pd:to>Send message to Primarie</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Send message to Primarie</pd:from>
+            <pd:to>end</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:activity name="Send message to Primarie">
+            <pd:type>com.tibco.plugin.jms.JMSQueueSendActivity</pd:type>
+            <pd:resourceType>ae.activities.JMSQueueSendActivity</pd:resourceType>
+            <pd:x>664</pd:x>
+            <pd:y>442</pd:y>
+            <config>
+                <PermittedMessageType>XML Text</PermittedMessageType>
+                <SessionAttributes>
+                    <transacted>false</transacted>
+                    <acknowledgeMode>1</acknowledgeMode>
+                    <maxSessions>1</maxSessions>
+                </SessionAttributes>
+                <ConfigurableHeaders>
+                    <JMSDeliveryMode>PERSISTENT</JMSDeliveryMode>
+                    <JMSExpiration>0</JMSExpiration>
+                    <JMSPriority>4</JMSPriority>
+                </ConfigurableHeaders>
+                <ConnectionReference>/Resouces/JMS-Connection-Primarie.sharedjmscon</ConnectionReference>
+                <InDataxsdString ref="pfx:root"/>
+            </config>
+            <pd:inputBindings>
+                <ns1:ActivityInput>
+                    <destinationQueue>
+                        <xsl:value-of select="$Create-Dinamic-queus-for-ISU-Primarie/Desinatii/QueueName[$k]"/>
+                    </destinationQueue>
+                    <Body>
+                        <xsl:copy-of select="$Start/root"/>
+                    </Body>
+                </ns1:ActivityInput>
+            </pd:inputBindings>
+        </pd:activity>
+    </pd:group>
+    <pd:activity name="Create Dinamic queus for ISU">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>368</pd:x>
+        <pd:y>82</pd:y>
+        <config>
+            <element>
+                <xsd:element name="Desinatii">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="QueueName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </element>
+        </config>
+        <pd:inputBindings>
+            <Desinatii>
+                <xsl:for-each select="$GetVariableZona3/root2/Destinatie[Sistem = 'ISU']">
+                    <QueueName>
+                        <xsl:value-of select="concat(Nume, &quot;.&quot;,Sistem)"/>
+                    </QueueName>
+                </xsl:for-each>
+            </Desinatii>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Create Dinamic queus for ISU Jandarmerie">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>368</pd:x>
+        <pd:y>259</pd:y>
+        <config>
+            <element>
+                <xsd:element name="Desinatii">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="QueueName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </element>
+        </config>
+        <pd:inputBindings>
+            <Desinatii>
+                <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$GetVariableZona3/root2/Destinatie[Sistem = 'JANDARMERIE']">
+                    <QueueName>
+                        <xsl:value-of select="concat(Nume, &quot;.&quot;,Sistem)"/>
+                    </QueueName>
+                </xsl:for-each>
+            </Desinatii>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Create Dinamic queus for ISU Primarie">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>368</pd:x>
+        <pd:y>449</pd:y>
+        <config>
+            <element>
+                <xsd:element name="Desinatii">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="QueueName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </element>
+        </config>
+        <pd:inputBindings>
+            <Desinatii>
+                <xsl:for-each xmlns:xsl="http://www.w3.org/1999/XSL/Transform" select="$GetVariableZona3/root2/Destinatie[Sistem = 'PRIMARIE']">
+                    <QueueName>
+                        <xsl:value-of select="concat(Nume, &quot;.&quot;,Sistem)"/>
+                    </QueueName>
+                </xsl:for-each>
+            </Desinatii>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="GetVariableZona3">
+        <pd:type>com.tibco.pe.core.GetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.getSharedVariable</pd:resourceType>
+        <pd:x>145</pd:x>
+        <pd:y>264</pd:y>
+        <config>
+            <variableConfig>/Resouces/SharedVariable/SVZona3.sharedvariable</variableConfig>
+        </config>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>GetVariableZona3</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Jandarmerie</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Primarie</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>GetVariableZona3</pd:from>
+        <pd:to>Create Dinamic queus for ISU</pd:to>
+        <pd:xpathDescription>ISU</pd:xpathDescription>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>$Start/root/Cod = 'ROSU' or $Start/root/Cod = 'GALBEN'</pd:xpath>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>ISU</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Create Dinamic queus for ISU</pd:from>
+        <pd:to>ISU</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>GetVariableZona3</pd:from>
+        <pd:to>Create Dinamic queus for ISU Jandarmerie</pd:to>
+        <pd:xpathDescription>Jandarmerie</pd:xpathDescription>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>$Start/root/Cod = 'ROSU'</pd:xpath>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Create Dinamic queus for ISU Jandarmerie</pd:from>
+        <pd:to>Jandarmerie</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>GetVariableZona3</pd:from>
+        <pd:to>Create Dinamic queus for ISU Primarie</pd:to>
+        <pd:xpathDescription>Primarie</pd:xpathDescription>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Create Dinamic queus for ISU Primarie</pd:from>
+        <pd:to>Primarie</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

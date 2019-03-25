@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <pd:name>initDbData/CallDBDestinatii.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startX>26</pd:startX>
+    <pd:startY>214</pd:startY>
+    <pd:returnBindings/>
+    <pd:endName>End</pd:endName>
+    <pd:endX>846</pd:endX>
+    <pd:endY>174</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1495199167379</pd:targetNamespace>
+    <pd:activity name="CallDataZona1">
+        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
+        <pd:x>307</pd:x>
+        <pd:y>75</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <commit>false</commit>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Resouces/JDBC-mySQL.sharedjdbc</jdbcSharedConfig>
+            <statement>select LOCALITATI.NUME as plm, SISTEME.NUME as plt from LOCALITATI, ZONE, SISTEME
+where LOCALITATI.ID_ZONA = ZONE.ID and
+LOCALITATI.ID_SISTEM = SISTEME.ID and
+ZONE.NUME = 'ZONA1'</statement>
+            <Prepared_Param_DataType/>
+            <optionalOrNillable>false</optionalOrNillable>
+            <processInSubsets>false</processInSubsets>
+            <wizardData/>
+            <ConfigurationError>"Duplicate field name found 'nume', please modify the query and create unique aliases for duplicate fields"</ConfigurationError>
+        </config>
+        <pd:inputBindings>
+            <jdbcQueryActivityInput/>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="SetSVZoana1">
+        <pd:type>com.tibco.pe.core.SetSharedVariableActivity</pd:type>
+        <pd:resourceType>ae.activities.setSharedVariable</pd:resourceType>
+        <pd:x>474</pd:x>
+        <pd:y>80</pd:y>
+        <config>
+            <variableConfig>/Resouces/SharedVariable/SVZona1.sharedvariable</variableConfig>
+            <showResult>false</showResult>
+        </config>
+        <pd:inputBindings>
+            <root2>
+                <xsl:for-each select="$CallDataZona1/resultSet/Record">
+                    <Destinatie>
+                        <Nume>
+                            <xsl:value-of select="NUMELOCALITATE"/>
+                        </Nume>
+                        <Sistem>
+                            <xsl:value-of select="NUMESISTEM"/>
+                        </Sistem>
+                    </Destinatie>
+                </xsl:for-each>
+            </root2>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>CallDataZona1</pd:from>
+        <pd:to>SetSVZoana1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>CallDataZona1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SetSVZoana1</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>
