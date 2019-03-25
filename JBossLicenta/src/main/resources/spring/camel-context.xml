@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="org.mycompany.MessageRouter" id="routerBean" scope="singleton"/>
+    <bean class="org.mycompany.MyBean" id="myBean" scope="singleton"/>
+    <bean
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="myDS">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/demo"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+    </bean>
+    <bean class="org.apache.camel.component.sql.SqlComponent" id="sql">
+        <property name="dataSource" ref="myDS"/>
+    </bean>
+    <bean class="com.tibco.tibjms.TibjmsTopicConnectionFactory"
+        id="connectionFactory" scope="singleton">
+        <property name="serverUrl" value="tcp://localhost:7222"/>
+        <property name="userName" value="admin"/>
+        <property name="userPassword" value=""/>
+    </bean>
+    <camelContext id="camel" shutdownRoute="Defer" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_routeSQL1">
+            <from id="_fromTimer1" uri="timer://foo?period=1000000"/>
+            <to id="_toCallSQL1" uri="sql:select CONCAT( LOCALITATI.NUME ,'.', SISTEME.NUME) from LOCALITATI, ZONE, SISTEME where LOCALITATI.ID_ZONA = ZONE.ID and LOCALITATI.ID_SISTEM = SISTEME.ID and ZONE.NUME = 'ZONA1'"/>
+            <to id="callBeen1" uri="bean:myBean?method=beanMethod(${body})"/>
+            <to id="destinations1" uri="file:output?fileName=ZONA1"/>
+        </route>
+        <route id="_routeSQL2">
+            <from id="_fromTimer2" uri="timer://foo?period=1000000"/>
+            <to id="_toCallSQL2" uri="sql:select CONCAT( LOCALITATI.NUME ,'.', SISTEME.NUME) from LOCALITATI, ZONE, SISTEME where LOCALITATI.ID_ZONA = ZONE.ID and LOCALITATI.ID_SISTEM = SISTEME.ID and ZONE.NUME = 'ZONA2'"/>
+            <to id="callBeen2" uri="bean:myBean?method=beanMethod(${body})"/>
+            <to id="destinations2" uri="file:output?fileName=ZONA2"/>
+        </route>
+        <route id="_routeSQL3">
+            <from id="_fromTimer3" uri="timer://foo?period=1000000"/>
+            <to id="_toCallSQL3" uri="sql:select CONCAT( LOCALITATI.NUME ,'.', SISTEME.NUME) from LOCALITATI, ZONE, SISTEME where LOCALITATI.ID_ZONA = ZONE.ID and LOCALITATI.ID_SISTEM = SISTEME.ID and ZONE.NUME = 'ZONA3'"/>
+            <to id="callBeen3" uri="bean:myBean?method=beanMethod(${body})"/>
+            <to id="destinations3" uri="file:output?fileName=ZONA3"/>
+        </route>
+        <route id="_routeSQL4">
+            <from id="_fromTimer4" uri="timer://foo?period=1000000"/>
+            <to id="_toCallSQL4" uri="sql:select CONCAT( LOCALITATI.NUME ,'.', SISTEME.NUME) from LOCALITATI, ZONE, SISTEME where LOCALITATI.ID_ZONA = ZONE.ID and LOCALITATI.ID_SISTEM = SISTEME.ID and ZONE.NUME = 'ZONA4'"/>
+            <to id="callBeen4" uri="bean:myBean?method=beanMethod(${body})"/>
+            <to id="destinations4" uri="file:output?fileName=ZONA4"/>
+        </route>
+        <route id="_route1">
+            <from id="_from3" uri="jms:queue:test.queue"/>
+            <to id="_to1" uri="direct:routing"/>
+        </route>
+        <route id="_routing">
+            <from id="_fromRouting" uri="direct:routing"/>
+            <setHeader headerName="cod" id="_setHeaderCod">
+                <xpath resultType="java.lang.String">/root/Cod</xpath>
+            </setHeader>
+            <setHeader headerName="zona" id="_setHeaderZona">
+                <xpath resultType="java.lang.String">/root/Destinatie</xpath>
+            </setHeader>
+            <setHeader headerName="destinations" id="_setHeaderDestinations">
+                <method method="getHeader(${header.zona})" ref="myBean"/>
+            </setHeader>
+            <choice id="_choice1">
+                <when id="_whenZona1">
+                    <simple>${body} contains 'ZONA1'</simple>
+                    <to id="callBeenRouting1" uri="bean:routerBean?method=routeTo(${header.destinations},${header.cod})"/>
+                </when>
+                <when id="_whenZona2">
+                    <simple>${body} contains 'ZONA2'</simple>
+                    <to id="callBeenRouting2" uri="bean:routerBean?method=routeTo(${header.destinations},${header.cod})"/>
+                </when>
+                <when id="_whenZona3">
+                    <simple>${body} contains 'ZONA3'</simple>
+                    <to id="callBeenRouting3" uri="bean:routerBean?method=routeTo(${header.destinations},${header.cod})"/>
+                </when>
+                <when id="_whenZona4">
+                    <simple>${body} contains 'ZONA4'</simple>
+                    <to id="callBeenRouting4" uri="bean:routerBean?method=routeTo(${header.destinations},${header.cod})"/>
+                </when>
+                <otherwise id="_otherwise1">
+                    <log id="logAltceva" message="message lost"/>
+                </otherwise>
+            </choice>
+        </route>
+    </camelContext>
+</beans>
