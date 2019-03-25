@@ -1,0 +1,10 @@
+CREATE DATABASE demo
+
+CREATE TABLE `demo`.`sisteme` ( `id` INT NOT NULL AUTO_INCREMENT, `nume` VARCHAR(200) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `demo`.`zone` ( `id` INT NOT NULL AUTO_INCREMENT, `nume` VARCHAR(200) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `demo`.`localitati` ( `id` INT NOT NULL AUTO_INCREMENT, `nume` VARCHAR(200) NOT NULL , `id_sistem` INT NOT NULL , `id_zona` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+INSERT INTO `sisteme` (`id`, `nume`) VALUES (NULL, 'ISU'), (NULL, 'PRIMARIE'), (NULL, 'JANDARMERIE')
+INSERT INTO `zone` (`id`, `nume`) VALUES (NULL, 'ZONA1'), (NULL, 'ZONA2'), (NULL, 'ZONA3'),(NULL, 'ZONA4')
+INSERT INTO `localitati` (`id`, `nume`, `id_sistem`, `id_zona`) VALUES (NULL, 'Cluj', '1', '1'), (NULL, 'Floresti', '1', '1'), (NULL, 'Floresti', '3', '2')
